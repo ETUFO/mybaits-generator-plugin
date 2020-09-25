@@ -1,1 +1,1 @@
-# mybaits-generator-plugin
+# mybatis-generator-plugin
