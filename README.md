@@ -1,0 +1,1 @@
+# mybaits-generator-plugin
