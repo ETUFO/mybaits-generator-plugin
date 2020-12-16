@@ -1,4 +1,5 @@
 import cn.hutool.setting.dialect.Props;
+import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 自定义imybatisplus代码生成1
+ * 自定义imybatisplus代码生成
+ *
  * @author wangye
  * @classname CodeGenerator
  * @date 2020/6/19 15:36
@@ -61,7 +63,7 @@ public class CodeGenerator {
         };
 
         // 如果模板引擎是 freemarker
-        String templatePath = "/templates/mapper.xml.ftl";
+        String templatePath= "/templates/mapper.xml.ftl";
 
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
@@ -77,6 +79,18 @@ public class CodeGenerator {
 
         // 自定义mapper配置
         templatePath = "/templates/mapper.java.ftl";
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 + pc.getModuleName()
+                String expand = projectPath + "/src/main/java/"+ parentPath +pc.getModuleName() + "/" + "dao";
+                String entityFile = String.format((expand + File.separator + "%s" + ".java"), tableInfo.getMapperName());
+                return entityFile;
+            }
+        });
+
+        // 自定义entity配置
+        templatePath = "/templates/entity.java.ftl";
         focList.add(new FileOutConfig(templatePath) {
             @Override
             public String outputFile(TableInfo tableInfo) {
