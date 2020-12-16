@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 自定义imybatisplus代码生成
+ * 自定义imybatisplus代码生成1
  * @author wangye
  * @classname CodeGenerator
  * @date 2020/6/19 15:36
